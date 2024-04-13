@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class DeckLoad : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    
+    [SerializeField] public List<string> DeckList;
 
     void Start()
     {
