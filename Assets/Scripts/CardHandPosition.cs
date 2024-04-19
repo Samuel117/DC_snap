@@ -60,4 +60,9 @@ public class CardHandPosition : MonoBehaviour
         horizontalLayoutGroup.padding.right -= 50;
         LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
     }
+
+    public void resetHandPos()
+    {
+        LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
+    }
 }
