@@ -43,10 +43,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("card drpped");
-        if(this.gameObject.transform.parent == GameObject.Find("Hand")) {
-            GameObject.FindObjectOfType<CardHandPosition>().resetHandPos();
-        }
+       
     }
 
     // Start is called before the first frame update
