@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardHandPosition : MonoBehaviour
+public class CardHandPosition : MonoBehaviour, IDropHandler
 {
     [SerializeField] private GameObject card;
     private HorizontalLayoutGroup horizontalLayoutGroup;
@@ -64,5 +65,10 @@ public class CardHandPosition : MonoBehaviour
     public void resetHandPos()
     {
         LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        resetHandPos();
     }
 }

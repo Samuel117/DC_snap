@@ -19,13 +19,11 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = false;
-        //Debug.Log("start drag");
+        diactivateCard();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        //Debug.Log("draging...");
         //Modificamos nuestra posición para añadir la cantidad de movimiento del maouse desde el ultimo frame
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
@@ -33,7 +31,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         //Debug.Log("stop drag");
-        canvasGroup.blocksRaycasts = true;
+        activateCard();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -43,7 +41,10 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrop(PointerEventData eventData)
     {
-       
+        if (eventData.pointerDrag != null)
+        {
+            GameObject.FindObjectOfType<CardHandPosition>().resetHandPos();
+        }
     }
 
     // Start is called before the first frame update
@@ -58,5 +59,13 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         
     }
 
-    
+    public void diactivateCard()
+    {
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public void activateCard()
+    {
+        canvasGroup.blocksRaycasts = true;
+    }
 }

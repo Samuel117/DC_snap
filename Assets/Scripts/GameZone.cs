@@ -10,12 +10,8 @@ public class GameZone : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("car dropped here");
-        if(eventData.pointerDrag != null)
+        if(eventData.pointerDrag != null && this.transform.childCount < 4)
         {
-            //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = 
-            //GetComponent<RectTransform>().anchoredPosition;
-
             eventData.pointerDrag.gameObject.transform.SetParent(rectTransform);
             LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
         }
