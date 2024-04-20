@@ -13,7 +13,12 @@ public class GameZone : MonoBehaviour, IDropHandler
         if(eventData.pointerDrag != null && this.transform.childCount < 4)
         {
             eventData.pointerDrag.gameObject.transform.SetParent(rectTransform);
+            eventData.pointerDrag.gameObject.GetComponent<DragCard>().diactivateCard();
             LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
+        }
+        else
+        {
+            FindObjectOfType<CardHandPosition>().resetHandPos();
         }
     }
 

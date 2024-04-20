@@ -31,7 +31,10 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         //Debug.Log("stop drag");
-        activateCard();
+        if(this.gameObject.transform.parent.gameObject.GetComponent<CardHandPosition>() != null)
+        {
+            activateCard();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
