@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &605563583
 RectTransform:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1003, y: -495}
-  m_SizeDelta: {x: 0, y: 128.52539}
+  m_SizeDelta: {x: 89.96777, y: 128.52539}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &605563584
 MonoBehaviour:
@@ -520,7 +520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69441e8199c119f49941e0effab9b1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZoomCardObject: {fileID: 0}
 --- !u!50 &605563586
 Rigidbody2D:
   serializedVersion: 4
@@ -678,10 +677,10 @@ GameObject:
   - component: {fileID: 1098600597}
   - component: {fileID: 1098600596}
   - component: {fileID: 1098600595}
-  - component: {fileID: 1098600599}
   - component: {fileID: 1098600600}
-  - component: {fileID: 1098600601}
   - component: {fileID: 1098600602}
+  - component: {fileID: 1098600601}
+  - component: {fileID: 1098600599}
   - component: {fileID: 1098600604}
   - component: {fileID: 1098600603}
   m_Layer: 5
@@ -868,23 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1098600604}
-          m_TargetAssemblyTypeName: ZoomCard, Assembly-CSharp
-          m_MethodName: overCard
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls: []
@@ -900,7 +883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69441e8199c119f49941e0effab9b1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZoomCardObject: {fileID: 605563582}
 --- !u!1 &1189171180
 GameObject:
   m_ObjectHideFlags: 0

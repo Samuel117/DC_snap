@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR;
 
-public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class DragCard : MonoBehaviour, IPointerDownHandler, 
+                        IBeginDragHandler, IEndDragHandler, 
+                        IDragHandler, IDropHandler, IPointerClickHandler
 {
     [SerializeField] private Canvas canvas;
 
@@ -19,6 +22,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("start drag");
         diactivateCard();
     }
 
@@ -39,8 +43,14 @@ public class DragCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //Debug.Log("click on card");
+        //none
     }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("click on card");
+    }
+
 
     public void OnDrop(PointerEventData eventData)
     {
