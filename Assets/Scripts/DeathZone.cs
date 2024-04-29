@@ -14,6 +14,12 @@ public class DeathZone : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag != null)
         {
             Debug.Log("card drpped outside");
+            if (eventData.pointerDrag.gameObject.transform.parent != GameObject.FindObjectOfType<CardHandPosition>().transform)
+            {
+                eventData.pointerDrag.gameObject.transform.SetParent(GameObject.FindObjectOfType<CardHandPosition>().transform);
+                GameObject.FindObjectOfType<CardHandPosition>().fixPadding(false);
+            }
+            eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCard();
             GameObject.FindObjectOfType<CardHandPosition>().resetHandPos();
         }
     }

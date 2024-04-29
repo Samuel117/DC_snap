@@ -4,39 +4,25 @@ using UnityEngine;
 
 public class ZoomCard : MonoBehaviour
 {
-    private bool canZoom = false;
-    //[SerializeField] GameObject ZoomCardObject;
-    Vector3 ZoomCardPos;
-    // Start is called before the first frame update
     void Start()
     {
-       // ZoomCardPos = ZoomCardObject.transform.position;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Debug.Log("Zoom on this card");
-        //}
-    }
+        //If this object is active, click to reactive cards in hand and remove zoomed card
+        if (Input.GetMouseButtonDown(0))
+        {
+            //GameObject[] cards = FindObjectOfType<CardHandPosition>().getCardsInHand();
+            DragCard[] cards = FindObjectsOfType<DragCard>();
+            foreach (DragCard card in cards)
+            {
+                card.GetComponent<DragCard>().activateCard();
+            }
 
-    public void overCard()
-    {
-        canZoom = true;
-
-        Debug.Log("Over card");
-    }
-
-    public void clickOnCard()
-    {
-        Debug.Log("Card clicked");
-    }
-
-    public void exitOverCard()
-    {
-        canZoom = false;
-        FindAnyObjectByType<CardHandPosition>().resetHandPos();
+            gameObject.SetActive(false);
+        }
     }
 }

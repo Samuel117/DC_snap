@@ -12,8 +12,15 @@ public class GameZone : MonoBehaviour, IDropHandler
     {
         if(eventData.pointerDrag != null && this.transform.childCount < 4)
         {
+            if (eventData.pointerDrag.transform.parent.name == "Hand")
+            {
+                FindObjectOfType<CardHandPosition>().fixPadding(true);
+            }
+
             eventData.pointerDrag.gameObject.transform.SetParent(rectTransform);
-            eventData.pointerDrag.gameObject.GetComponent<DragCard>().diactivateCard();
+            eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCard();
+            //FindObjectOfType<CardHandPosition>().fixPadding(true);
+
             LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
         }
         else

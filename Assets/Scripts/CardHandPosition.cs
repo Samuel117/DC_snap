@@ -37,7 +37,7 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
 
     private void drawCard()
     {
-        //Spawn cards in hand: padding = 460 y -50 por carta
+        //Spawn cards in hand: padding = 900 y -100 por carta
         if (this.transform.childCount < 7)
         {
             //cardAnimDrawTest.activate();
@@ -56,9 +56,9 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
 
     private void instantiateCard()
     {
-        Instantiate(card, this.transform);
-        horizontalLayoutGroup.padding.left -= 50;
-        horizontalLayoutGroup.padding.right -= 50;
+        GameObject nextCard = Instantiate(card, this.transform);
+        nextCard.GetComponent<DragCard>().cardName = "Batman " + this.transform.childCount;
+        fixPadding(false);
         LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
     }
 
@@ -69,6 +69,43 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        resetHandPos();
+        if (eventData.pointerDrag != null)
+        {
+            eventData.pointerDrag.gameObject.transform.SetParent(rectTransform);
+            eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCard();
+            fixPadding(false);
+        }
+            resetHandPos();
+    }
+
+    public GameObject[] getCardsInHand()
+    {
+        GameObject[] cards = new GameObject[transform.childCount];
+
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            cards[i] = this.transform.GetChild(i).gameObject;
+        }
+
+        return cards;
+    }
+
+    public HorizontalLayoutGroup gethorizontalLayoutGroup()
+    {
+        return horizontalLayoutGroup;
+    }
+
+    public void fixPadding(bool morePadding)
+    {
+        if(morePadding)
+        {
+            horizontalLayoutGroup.padding.left += 100;
+            horizontalLayoutGroup.padding.right += 100;
+        }
+        else
+        {
+            horizontalLayoutGroup.padding.left -= 100;
+            horizontalLayoutGroup.padding.right -= 100;
+        }
     }
 }
