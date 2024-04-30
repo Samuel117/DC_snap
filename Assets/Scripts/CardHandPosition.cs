@@ -73,6 +73,7 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
         {
             eventData.pointerDrag.gameObject.transform.SetParent(rectTransform);
             eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCard();
+            
             fixPadding(false);
         }
             resetHandPos();

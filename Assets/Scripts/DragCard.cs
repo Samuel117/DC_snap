@@ -31,11 +31,6 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
         { 
             //transform.SetParent(FindObjectOfType<CardHandPosition>().transform);
             transform.SetParent(GameObject.Find("MainCanvas").transform);
-            //transform.localScale = new Vector3(rectTransform.localScale.x * 4, rectTransform.localScale.y * 4, rectTransform.localScale.z); ;
-            //rectTransform.anchoredPosition = eventData.delta;
-            //rectTransform.position = eventData.delta;
-            //rectTransform.position = new Vector3(eventData.delta.x, eventData.delta.y, 0);
-            //LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
         }
         diactivateCard();
     }
