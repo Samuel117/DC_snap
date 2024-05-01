@@ -16,17 +16,15 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
     {
         horizontalLayoutGroup = GetComponent<HorizontalLayoutGroup>();
         rectTransform = GetComponent<RectTransform>();
-
-        drawInitialHand();
     }
 
     // Update is called once per frame
     void Update()
     {
-        endTurn();
+        //endTurn();
 
     }
-
+    /*
     private void drawInitialHand()
     {
         for(int x = 0; x < 3; x++)
@@ -34,18 +32,17 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
             drawCard();
         }
     }
-
-    private void drawCard()
+    */
+    public void drawCard()
     {
         //Spawn cards in hand: padding = 900 y -100 por carta
-        if (this.transform.childCount < 7)
-        {
-            //cardAnimDrawTest.activate();
-            cardAnimDrawTest.gameObject.SetActive(true);
-            Invoke(nameof(instantiateCard), 1f);
-        }
+        
+        //cardAnimDrawTest.activate();
+        cardAnimDrawTest.gameObject.SetActive(true);
+        Invoke(nameof(instantiateCard), 1f);
+        
     }
-
+    /*
     private void endTurn()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -53,7 +50,7 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
             drawCard();
         }
     }
-
+    */
     private void instantiateCard()
     {
         GameObject nextCard = Instantiate(card, this.transform);
@@ -108,5 +105,9 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
             horizontalLayoutGroup.padding.left -= 100;
             horizontalLayoutGroup.padding.right -= 100;
         }
+    }
+    public int getHandSize()
+    {
+        return transform.childCount;
     }
 }
