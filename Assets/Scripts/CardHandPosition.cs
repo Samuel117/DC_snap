@@ -11,6 +11,8 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
     private RectTransform rectTransform;
     [SerializeField] private CardAnimDrawTest cardAnimDrawTest;
 
+    int[] paddings = new int[8] {900,800,700,600,500,400,300,200};
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,41 +23,23 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
     // Update is called once per frame
     void Update()
     {
-        //endTurn();
-
+    
     }
-    /*
-    private void drawInitialHand()
-    {
-        for(int x = 0; x < 3; x++)
-        {
-            drawCard();
-        }
-    }
-    */
+   
     public void drawCard()
     {
         //Spawn cards in hand: padding = 900 y -100 por carta
-        
         //cardAnimDrawTest.activate();
         cardAnimDrawTest.gameObject.SetActive(true);
         Invoke(nameof(instantiateCard), 1f);
         
     }
-    /*
-    private void endTurn()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            drawCard();
-        }
-    }
-    */
+   
     private void instantiateCard()
     {
         GameObject nextCard = Instantiate(card, this.transform);
         nextCard.GetComponent<DragCard>().cardName = "Batman " + this.transform.childCount;
-        fixPadding(false);
+        fixPadding();
         LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
     }
 
@@ -70,10 +54,9 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
         {
             eventData.pointerDrag.gameObject.transform.SetParent(rectTransform);
             eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCard();
-            
-            fixPadding(false);
         }
-            resetHandPos();
+
+        fixPadding();
     }
 
     public GameObject[] getCardsInHand()
@@ -93,18 +76,11 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
         return horizontalLayoutGroup;
     }
 
-    public void fixPadding(bool morePadding)
+    public void fixPadding()
     {
-        if(morePadding)
-        {
-            horizontalLayoutGroup.padding.left += 100;
-            horizontalLayoutGroup.padding.right += 100;
-        }
-        else
-        {
-            horizontalLayoutGroup.padding.left -= 100;
-            horizontalLayoutGroup.padding.right -= 100;
-        }
+        horizontalLayoutGroup.padding.left = paddings[this.transform.childCount];
+        horizontalLayoutGroup.padding.right = paddings[this.transform.childCount];
+        resetHandPos();
     }
     public int getHandSize()
     {

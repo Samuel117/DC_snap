@@ -43,11 +43,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("stop drag");
-        if (this.gameObject.transform.parent.gameObject.GetComponent<CardHandPosition>() != null)
-        {
-            activateCard();
-        }
+        activateCard();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -73,11 +69,23 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
 
     public void OnDrop(PointerEventData eventData)
     { 
-        //If card was droped on nothing, restart hand position
+        //If card was droped on another card in a game zone
         if (eventData.pointerDrag != null)
         {
-            GameObject.FindObjectOfType<CardHandPosition>().resetHandPos();
+            if(this.transform.parent.GetComponent<GameZone>() != null 
+               && this.transform.parent.GetComponent<GameZone>().getCardsNumber() < 4)
+            {
+                eventData.pointerDrag.gameObject.transform.SetParent(this.transform.parent);
+            }
         }
+
+        //if card is dropped on another card in the hand
+        if(this.transform.parent.name == "Hand")
+        {
+                eventData.pointerDrag.gameObject.transform.SetParent(this.transform.parent);
+        }
+
+        GameObject.FindObjectOfType<CardHandPosition>().fixPadding();
     }
 
     // Start is called before the first frame update
