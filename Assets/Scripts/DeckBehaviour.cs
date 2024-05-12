@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DeckBehaviour : MonoBehaviour
 {
+    [SerializeField] GameObject card;
     List<string> Deck; //Lista de cartas
     [SerializeField] int startingHand = 3; //tamaño de la mano inicial
     public int top; // La siguiente carta a robar
     CardHandPosition cd;
-
+    
     void Start()
     {
         Deck = this.gameObject.GetComponent<DeckLoad>().DeckList;
@@ -18,7 +19,7 @@ public class DeckBehaviour : MonoBehaviour
         for (int i = 0; i < startingHand; i++)
         {
             refreshTop();
-            cd.drawCard();
+            drawCard();
             Debug.Log(Deck[top]);
             Deck.RemoveAt(top);
         }
@@ -46,10 +47,15 @@ public class DeckBehaviour : MonoBehaviour
         
         if(Deck.Count > 0 && cd.getHandSize() < 7)
         {
+            //Deck behaviour
             Debug.Log(Deck[top]);
             Deck.RemoveAt(top);
             refreshTop();
-            cd.drawCard();
+            
+            
+            GameObject test = Instantiate (card,cd.gameObject.transform);
+            test.GetComponent<CardClass>().constructor(1,1,1,"batman",true,false);
+            cd.FixCard();
         }
     } 
 }

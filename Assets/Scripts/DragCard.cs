@@ -11,18 +11,18 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
                         IBeginDragHandler, IEndDragHandler, 
                         IDragHandler, IDropHandler, IPointerClickHandler
 {
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private GameObject zoomCard;
+    private Canvas canvas;
+    private GameObject zoomCard;
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-
-    public string cardName;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
+        zoomCard = GameObject.Find("ZoomCanvas");
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -56,7 +56,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
         //ZOOM on card when clicked 
         zoomCard.SetActive(true);
         //Here we set the info to show it in the zoomed card, for now is just the name of the card
-        zoomCard.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = cardName;
+        zoomCard.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = GetComponent<CardClass>().name; ;
         //GameObject[] cards = FindObjectOfType<CardHandPosition>().getCardsInHand();
         DragCard[] cards = FindObjectsOfType<DragCard>();
 

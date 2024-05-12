@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CardHandPosition : MonoBehaviour, IDropHandler
 {
+    
+    
     [SerializeField] private GameObject card;
     private HorizontalLayoutGroup horizontalLayoutGroup;
     private RectTransform rectTransform;
@@ -14,9 +16,13 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
     int[] paddings = new int[8] {900,800,700,600,500,400,300,200};
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         horizontalLayoutGroup = GetComponent<HorizontalLayoutGroup>();
+    }
+    void Start()
+    {
+        
         rectTransform = GetComponent<RectTransform>();
     }
 
@@ -26,21 +32,21 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
     
     }
    
-    public void drawCard()
+    public void cardAnimation()
     {
         //Spawn cards in hand: padding = 900 y -100 por carta
-        //cardAnimDrawTest.activate();
         cardAnimDrawTest.gameObject.SetActive(true);
-        Invoke(nameof(instantiateCard), 1f);
+        Invoke(nameof(FixCard), 1f);
         
     }
    
-    private void instantiateCard()
+    public void FixCard()
     {
-        GameObject nextCard = Instantiate(card, this.transform);
-        nextCard.GetComponent<DragCard>().cardName = "Batman " + this.transform.childCount;
+        //GameObject nextCard = Instantiate(card, this.transform);
+        //nextCard.GetComponent<DragCard>().cardName = "Batman " + this.transform.childCount;
+        //mezclar metodos
         fixPadding();
-        LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
+        resetHandPos();
     }
 
     public void resetHandPos()
@@ -78,6 +84,11 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
 
     public void fixPadding()
     {
+        Debug.Log(this.transform.childCount);
+        if(horizontalLayoutGroup == null)
+        {
+            Debug.Log("hola");
+        }
         horizontalLayoutGroup.padding.left = paddings[this.transform.childCount];
         horizontalLayoutGroup.padding.right = paddings[this.transform.childCount];
         resetHandPos();

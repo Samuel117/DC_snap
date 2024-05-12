@@ -6,29 +6,60 @@ using UnityEngine;
 
 public class CardClass : MonoBehaviour
 {
-    public class Card
+    //atributos basicos
+    [SerializeField] public int ID;
+    [SerializeField] public int energy;
+    [SerializeField] public int power;
+    [SerializeField] public string cardname;
+    //variables de habilidades
+    [SerializeField] public bool destroyable;
+    [SerializeField] public bool hability;
+    [SerializeField] public bool isPlayed;
+    [SerializeField] public bool canMove;
+    //variables de modificadores
+    [SerializeField] public int addedPower;
+    [SerializeField]public int minusPower;
+
+    private void Start()
     {
-        public int ID;
-        public int energy;
-        public int power;
-        public string name;
-
-        public Card(int id, int x, int y, string s)
-        {
-            ID = id;
-            energy = x;
-            power = y;
-            name = s;
-        }
-        void ModifyPower(int x, int sign)
-        {
-            power += x * sign;
-        }
-        void ModifyCost(int x, int sign)
-        {
-            energy += x * sign;
-        }
-
-
+        
     }
-}
+
+   
+    public void  constructor(int id, int x, int y, string s, bool D, bool move)
+    {
+        ID = id;
+        energy = x;
+        power = y;
+        name = s;
+
+        destroyable = D;
+        hability  = true;
+        canMove = move;
+        isPlayed = false;
+
+        addedPower = 0;
+        minusPower = 0;
+    }
+    
+    void AddPower(int x)
+        {
+            addedPower += x;
+        }
+    void MinusPower(int x)
+        {
+            minusPower += x;
+        }
+    int GetPower()
+        {
+            return power + addedPower - minusPower;
+        }
+    int GetEnergy()
+        {
+            return energy;
+        }
+    void SetPower(int x)
+        {
+            power = x;
+        }
+    }
