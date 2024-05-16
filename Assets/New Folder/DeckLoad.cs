@@ -6,7 +6,7 @@ public class DeckLoad : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField] public List<string> DeckList;
+    [SerializeField] public List<int> DeckList;
 
     void Start()
     {

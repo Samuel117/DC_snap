@@ -84,7 +84,7 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
 
     public void fixPadding()
     {
-        Debug.Log(this.transform.childCount);
+        
         if(horizontalLayoutGroup == null)
         {
             Debug.Log("hola");

@@ -1,0 +1,13 @@
+ID,energy,power ,cardname,destroyable,canMove
+1,2,3,batman,true,false
+2,5,7,superman,false,true
+3,1,2,green lantern,true,false
+4,3,4,wonder woman,true,false
+5,6,12,detective marciano,true,false
+6,2,3,Robin,true,false
+7,3,3,Flash,true,true
+8,1,3,Lex Luthor,true,false
+9,4,7,Brainiac,true,false
+10,5,8,Harley Quin,true,false
+11,4,5,Joker,true,false
+12,2,3,Clayface,true,false

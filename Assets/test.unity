@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 35007678}
   - component: {fileID: 35007679}
   - component: {fileID: 35007680}
+  - component: {fileID: 35007681}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -155,17 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b85f065f4cbd1746b482c7d62bfa5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeckList:
-  - batman
-  - robin
-  - superman
-  - aquaman
-  - flash
-  - wonderwoman
-  - flecha verde
-  - linterna verde
-  - detective marciano
-  - superboy
+  DeckList: 0a000000010000000200000003000000040000000500000006000000070000000800000009000000
 --- !u!4 &35007677
 Transform:
   m_ObjectHideFlags: 0
@@ -224,6 +215,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxEnergy: 0
   CurrentEnergy: 0
+--- !u!114 &35007681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35007675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d6da67ee9d80d40861b4a1d9980dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CSVinfo: {fileID: 4900000, guid: 0464881740298ab40b8653844b709b06, type: 3}
 --- !u!1 &395841835
 GameObject:
   m_ObjectHideFlags: 0
