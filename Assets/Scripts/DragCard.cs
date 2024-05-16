@@ -22,7 +22,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
-        zoomCard = GameObject.Find("ZoomCanvas");
+        zoomCard = GameObject.Find("ZoomCluster");
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -54,9 +54,12 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
     public void OnPointerClick(PointerEventData eventData)
     {
         //ZOOM on card when clicked 
-        zoomCard.SetActive(true);
+        Transform[] zoomElements = zoomCard.transform.GetComponentsInChildren<Transform>(true);
+        zoomElements[1].gameObject.SetActive(true);
+        
         //Here we set the info to show it in the zoomed card, for now is just the name of the card
-        zoomCard.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = GetComponent<CardClass>().name; ;
+        zoomElements[4].gameObject.transform.GetComponent<TextMeshProUGUI>().text = GetComponent<CardClass>().name;
+
         //GameObject[] cards = FindObjectOfType<CardHandPosition>().getCardsInHand();
         DragCard[] cards = FindObjectsOfType<DragCard>();
 
