@@ -13,7 +13,7 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
     private RectTransform rectTransform;
     [SerializeField] private CardAnimDrawTest cardAnimDrawTest;
 
-    int[] paddings = new int[8] {900,800,700,600,500,400,300,200};
+    int[] paddings = new int[8] {800,800,820,750,670,580,500,450};
 
     // Start is called before the first frame update
     void Awake()
