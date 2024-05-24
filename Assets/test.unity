@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 35007679}
   - component: {fileID: 35007680}
   - component: {fileID: 35007681}
+  - component: {fileID: 35007682}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -363,6 +364,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CSVinfo: {fileID: 4900000, guid: 0464881740298ab40b8653844b709b06, type: 3}
+--- !u!114 &35007682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35007675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a899c2da002fe44bbe215659b8e656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZB: {fileID: 0}
 --- !u!1 &54118148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,6 +2769,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623099251}
+  - component: {fileID: 1623099252}
   m_Layer: 5
   m_Name: Zones
   m_TagString: Untagged
@@ -2791,6 +2806,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0.3714, y: -16}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1623099252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623099250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b348146453d85479b0946492126db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  z1: {fileID: 1438504316}
+  z2: {fileID: 1843973935}
+  z3: {fileID: 80290147}
 --- !u!1 &1652741606
 GameObject:
   m_ObjectHideFlags: 0

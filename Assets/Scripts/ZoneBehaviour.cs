@@ -26,7 +26,7 @@ public class ZoneBehaviour : MonoBehaviour
         good.text = getPlayerPower().ToString();
     }
 
-    int getEnemyPower()
+    public int getEnemyPower()
     {
         GameObject[] cards = new GameObject[enemyZone.gameObject.transform.childCount];
 
@@ -42,7 +42,7 @@ public class ZoneBehaviour : MonoBehaviour
         }
         return acum;
     }
-    int getPlayerPower()
+    public int getPlayerPower()
     {
         GameObject[] cards = new GameObject[playerZone.gameObject.transform.childCount];
 

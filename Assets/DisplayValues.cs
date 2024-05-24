@@ -19,13 +19,11 @@ public class DisplayValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(cd.power);
-        Debug.Log(cd.energy);
-        
+       
         if (isEnergy)
         {
             tx.text = cd.energy.ToString();
-            Debug.Log("hola");
+            
         }
         else
         {

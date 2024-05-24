@@ -9,15 +9,16 @@ public class TurnController : MonoBehaviour
 
     DeckBehaviour db;
     EnergyController Eg;
+    EndGame ed;
     
     
     void Start()
     {
-        turn = 0;
+        turn = 1;
         MaxTurn = 6;
         db = this.gameObject.GetComponent<DeckBehaviour>();
         Eg = this.gameObject.GetComponent<EnergyController>();
-        
+        ed = this.gameObject.GetComponent<EndGame>();
     }
 
     // Update is called once per frame
@@ -29,14 +30,15 @@ public class TurnController : MonoBehaviour
     public void passTurn()
     {
         turn += 1;
+        if (turn > MaxTurn)
+        {
+            ed.end();
+        }
         db.drawCard();
         
         Eg.PlusMaxEnergy();
         Eg.PlusEnergy(1);
-        if (turn > MaxTurn)
-        {
-            //endgame
-        }
+        
     }
 
 }
