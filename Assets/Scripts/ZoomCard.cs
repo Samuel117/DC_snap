@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ZoomCard : MonoBehaviour
 {
+    private cardStack cs;
+
+    private void Awake()
+    {
+        cs = FindObjectOfType<cardStack>();    
+    }
+
     void Start()
     {
        
@@ -15,12 +22,13 @@ public class ZoomCard : MonoBehaviour
         //If this object is active, click to reactive cards in hand and remove zoomed card
         if (Input.GetMouseButtonDown(0))
         {
-            //GameObject[] cards = FindObjectOfType<CardHandPosition>().getCardsInHand();
-            DragCard[] cards = FindObjectsOfType<DragCard>();
-            foreach (DragCard card in cards)
+            GameObject[] cardsInHand = FindObjectOfType<CardHandPosition>().getCardsInHand();
+            foreach (GameObject card in cardsInHand)
             {
-                card.GetComponent<DragCard>().activateCard();
+                card.GetComponent<DragCard>().activateCardInteractions();
             }
+
+            cs.setActiveCard();
 
             gameObject.SetActive(false);
         }

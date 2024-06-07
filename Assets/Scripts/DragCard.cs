@@ -17,33 +17,49 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
+    private cardStack cs;
+    private bool canDrag = true;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         zoomCard = GameObject.Find("ZoomCluster");
+        cs = FindObjectOfType<cardStack>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (transform.parent.name != "Hand")
-        { 
-            //transform.SetParent(FindObjectOfType<CardHandPosition>().transform);
-            transform.SetParent(GameObject.Find("MainCanvas").transform);
+        if (canDrag)
+        {
+            if (transform.parent.name != "Hand")
+            {
+                //transform.SetParent(FindObjectOfType<CardHandPosition>().transform);
+                transform.SetParent(GameObject.Find("MainCanvas").transform);
+                cs.removePlayedCard();
+            }
+            diactivateCardInteractions();
         }
-        diactivateCard();
+        else
+        {
+            eventData.pointerDrag = null;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        //Modificamos nuestra posición para añadir la cantidad de movimiento del mouse desde el ultimo frame
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        if (canDrag)
+        {
+            //Modificamos nuestra posición para añadir la cantidad de movimiento del mouse desde el ultimo frame
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        activateCard();
+        //No necesario porque el stack se encarga de activar o desactivar cartas
+        //activateCard();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -65,7 +81,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
 
         foreach (DragCard card in cards)
         {
-            card.GetComponent<DragCard>().diactivateCard();
+            card.GetComponent<DragCard>().diactivateCardInteractions();
         }
     }
 
@@ -79,6 +95,7 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
                && this.transform.parent.GetComponent<GameZone>().getCardsNumber() < 4)
             {
                 eventData.pointerDrag.gameObject.transform.SetParent(this.transform.parent);
+                cs.addPlayerdCard(eventData.pointerDrag.gameObject.GetComponent<DragCard>());
             }
         }
 
@@ -86,6 +103,8 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
         if(this.transform.parent.name == "Hand")
         {
                 eventData.pointerDrag.gameObject.transform.SetParent(this.transform.parent);
+                eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCardInteractions();
+                eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCardDrag();
         }
 
         GameObject.FindObjectOfType<CardHandPosition>().fixPadding();
@@ -103,13 +122,29 @@ public class DragCard : MonoBehaviour, IPointerDownHandler,
         
     }
 
-    public void diactivateCard()
+    //Hacer metodo y variable para solo desactivar el drag y no el click y llamarlo en el lugar apropiado
+    public void diactivateCardInteractions()
     {
         canvasGroup.blocksRaycasts = false;
     }
 
-    public void activateCard()
+    public void diactivateCardDrag()
+    {
+        canDrag = false;
+    }
+
+    public void activateCardInteractions()
     {
         canvasGroup.blocksRaycasts = true;
+    }
+
+    public void activateCardDrag()
+    {
+        canDrag = true;
+    }
+
+    public bool getDragCard()
+    {
+        return canDrag;
     }
 }

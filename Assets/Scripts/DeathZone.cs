@@ -18,7 +18,9 @@ public class DeathZone : MonoBehaviour, IDropHandler
             {
                 eventData.pointerDrag.gameObject.transform.SetParent(GameObject.FindObjectOfType<CardHandPosition>().transform);
             }
-            eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCard();
+            eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCardInteractions();
+            eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCardDrag();
+
             GameObject.FindObjectOfType<CardHandPosition>().fixPadding();
         }
     }
