@@ -10,6 +10,7 @@ public class TurnController : MonoBehaviour
     DeckBehaviour db;
     EnergyController Eg;
     EndGame ed;
+    cardStack cs;
     
     
     void Start()
@@ -19,6 +20,8 @@ public class TurnController : MonoBehaviour
         db = this.gameObject.GetComponent<DeckBehaviour>();
         Eg = this.gameObject.GetComponent<EnergyController>();
         ed = this.gameObject.GetComponent<EndGame>();
+
+        cs = FindAnyObjectByType<cardStack>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class TurnController : MonoBehaviour
         
         Eg.PlusMaxEnergy();
         Eg.PlusEnergy(1);
+        cs.emptyStack();
         
     }
 

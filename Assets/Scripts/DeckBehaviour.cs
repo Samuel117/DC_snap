@@ -58,7 +58,7 @@ public class DeckBehaviour : MonoBehaviour
            
             CI.fetchCard(Deck[top], carta);
             Deck.RemoveAt(top);
-            cd.FixCard();
+            cd.fixPadding();
 
             
             refreshTop();

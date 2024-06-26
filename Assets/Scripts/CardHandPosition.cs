@@ -36,22 +36,20 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
     {
         //Spawn cards in hand: padding = 900 y -100 por carta
         cardAnimDrawTest.gameObject.SetActive(true);
-        Invoke(nameof(FixCard), 1f);
+        Invoke(nameof(fixPadding), 1f);
         
     }
    
-    public void FixCard()
-    {
-        //GameObject nextCard = Instantiate(card, this.transform);
-        //nextCard.GetComponent<DragCard>().cardName = "Batman " + this.transform.childCount;
-        //mezclar metodos
-        fixPadding();
-        resetHandPos();
-    }
-
     public void resetHandPos()
     {
         LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
+    }
+
+    public void fixPadding()
+    {
+        horizontalLayoutGroup.padding.left = paddings[this.transform.childCount];
+        horizontalLayoutGroup.padding.right = paddings[this.transform.childCount];
+        resetHandPos();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -62,7 +60,6 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
             eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCardInteractions();
             eventData.pointerDrag.gameObject.GetComponent<DragCard>().activateCardDrag();
         }
-
         fixPadding();
     }
 
@@ -83,17 +80,7 @@ public class CardHandPosition : MonoBehaviour, IDropHandler
         return horizontalLayoutGroup;
     }
 
-    public void fixPadding()
-    {
-        
-        if(horizontalLayoutGroup == null)
-        {
-            Debug.Log("hola");
-        }
-        horizontalLayoutGroup.padding.left = paddings[this.transform.childCount];
-        horizontalLayoutGroup.padding.right = paddings[this.transform.childCount];
-        resetHandPos();
-    }
+    
     public int getHandSize()
     {
         return transform.childCount;

@@ -22,14 +22,15 @@ public class ZoomCard : MonoBehaviour
         //If this object is active, click to reactive cards in hand and remove zoomed card
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject[] cardsInHand = FindObjectOfType<CardHandPosition>().getCardsInHand();
-            foreach (GameObject card in cardsInHand)
+            DragCard[] allCards = FindObjectsOfType<DragCard>();
+            //GameObject[] cardsInHand = FindObjectOfType<CardHandPosition>().getCardsInHand();
+            foreach (DragCard card in allCards)
             {
-                card.GetComponent<DragCard>().activateCardInteractions();
+                //card.GetComponent<DragCard>().activateCardInteractions();
+                card.activateCardInteractions();
             }
 
             cs.setActiveCard();
-
             gameObject.SetActive(false);
         }
     }

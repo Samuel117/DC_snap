@@ -31,6 +31,15 @@ public class cardStack : MonoBehaviour
         setActiveCard();
     }
 
+    public void emptyStack()
+    {
+        if(playedCards.Count > 0)
+        {
+            playedCards[playedCards.Count - 1].diactivateCardDrag();
+        }
+        playedCards.Clear();
+    }
+
     public void setActiveCard()
     {
         if(playedCards.Count >= 1)
