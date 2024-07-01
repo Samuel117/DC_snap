@@ -7,10 +7,12 @@ public class cardStack : MonoBehaviour
     //private DragCard[] playedCards = new DragCard[12];
     List<DragCard> playedCards = new List<DragCard>();
 
+    CardOrder co;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        co = FindObjectOfType<CardOrder>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class cardStack : MonoBehaviour
         {
             playedCards[playedCards.Count - 1].diactivateCardDrag();
         }
+        co.saveCards(playedCards);
         playedCards.Clear();
     }
 
